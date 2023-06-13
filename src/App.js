@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import { RequireToken } from "./components/Auth";
+import "./style/App.css";
 
-function App() {
+export default function App() {
+  const [user, setUser] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Login setUser={setUser} />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireToken>
+                <Dashboard />
+              </RequireToken>
+            }
+          />
+        </Routes>
+        <div className="footer">
+          <span>Made with 💙 by rachel</span>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default App;
