@@ -23,6 +23,6 @@ export const grados = [
       "Grado V: Centro de negocio de grandes ciudades, con profusión de edificios en altura",
     value: 5,
   },
-];
+]
 
-export const tiposCubierta = [{ label: "Cubierta a dos aguas", value: 2 }];
+export const tiposCubierta = [{ label: "Cubierta a dos aguas", value: 2 }]

@@ -12,4 +12,4 @@ export const SearchIcon = () => (
       fill="currentColor"
     />
   </svg>
-);
+)

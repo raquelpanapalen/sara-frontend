@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import Login from "./components/Login";
-import { RequireToken } from "./components/Auth";
-import "./style/App.css";
+import React, { useState } from "react"
+import { Routes, Route } from "react-router-dom"
+import Dashboard from "./components/Dashboard"
+import Login from "./components/Login"
+import { RequireToken } from "./components/Auth"
+import "./style/App.css"
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
   return (
     <>
@@ -27,5 +27,5 @@ export default function App() {
         </div>
       </div>
     </>
-  );
+  )
 }

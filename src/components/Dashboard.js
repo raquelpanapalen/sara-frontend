@@ -5,6 +5,7 @@ import homeLogo from "../images/home.png"
 import cubierta2aguasImage from "../images/cubierta2aguas.png"
 import paramVerticalesImage from "../images/paramverticales.png"
 import CitySearch from "./CitySearch"
+import { fetchToken } from "./Auth"
 import { grados, tiposCubierta } from "./utils"
 import axios from "axios"
 
@@ -37,7 +38,7 @@ export default function Dashboard() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/resultados`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${fetchToken()}`,
         },
       })
       .then((response) => {
@@ -204,17 +205,17 @@ export default function Dashboard() {
                   >
                     <tbody>
                       <tr>
-                        {Object.keys(resultados[0]).map((key) => {
+                        {Object.keys(resultados[0]).map((key, i) => {
                           return (
-                            <td>
+                            <td key={i}>
                               <b>{key}</b>
                             </td>
                           )
                         })}
                       </tr>
                       <tr>
-                        {Object.keys(resultados[0]).map((key) => {
-                          return <td>{resultados[0][key]}</td>
+                        {Object.keys(resultados[0]).map((key, i) => {
+                          return <td key={i}>{resultados[0][key]}</td>
                         })}
                       </tr>
                     </tbody>

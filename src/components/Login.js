@@ -1,28 +1,30 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { setToken } from "./Auth";
-import axios from "axios";
+import React, { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { setToken } from "./Auth"
+import axios from "axios"
+
+import engineer from "../images/engineer.png"
 
 export default function Login({ setUser }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    setUser(null);
-  });
+    setUser(null)
+  })
 
   const onLogin = (e) => {
-    e.preventDefault();
-    const username = e.target.username.value;
-    const password = e.target.password.value;
+    e.preventDefault()
+    const username = e.target.username.value
+    const password = e.target.password.value
     if (!username) {
-      alert("Username is required");
+      alert("Username is required")
     } else if (!password) {
-      alert("Password is required");
+      alert("Password is required")
     } else {
-      console.log(`${process.env.REACT_APP_API_URL}/login`);
-      const formData = new FormData();
-      formData.append("username", username);
-      formData.append("password", password);
+      console.log(`${process.env.REACT_APP_API_URL}/login`)
+      const formData = new FormData()
+      formData.append("username", username)
+      formData.append("password", password)
       axios
         .post(`${process.env.REACT_APP_API_URL}/login`, formData, {
           headers: {
@@ -30,20 +32,21 @@ export default function Login({ setUser }) {
           },
         })
         .then((response) => {
-          if (response.data.token) {
-            setToken(response.data.token);
-            navigate("/dashboard");
+          if (response.data.access_token) {
+            setToken(response.data.access_token)
+            navigate("/dashboard")
           }
         })
         .catch((err) => {
-          console.log(err, "ERROR");
-        });
+          console.log(err, "ERROR")
+        })
     }
-  };
+  }
 
   return (
     <div className="block">
       <h1 className="subtitle">Ready to do some work?</h1>
+      <img src={engineer} alt="sara" height={150} />
       <div
         className="card"
         style={{ width: "300px", height: "300px", marginTop: "50px" }}
@@ -85,5 +88,5 @@ export default function Login({ setUser }) {
         </form>
       </div>
     </div>
-  );
+  )
 }

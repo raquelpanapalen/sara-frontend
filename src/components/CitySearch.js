@@ -1,40 +1,45 @@
-import { useState } from "react";
-import Select, { components } from "react-select";
-import { SearchIcon } from "./SearchIcon";
-import axios from "axios";
+import { useState } from "react"
+import Select, { components } from "react-select"
+import { SearchIcon } from "./SearchIcon"
+import { fetchToken } from "./Auth"
+import axios from "axios"
 
 const CitySearch = () => {
-  const [inputText, setInputText] = useState("");
-  const [municipios, setMunicipios] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [inputText, setInputText] = useState("")
+  const [municipios, setMunicipios] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleInputChange = (inputText, meta) => {
     if (meta.action !== "input-blur" && meta.action !== "menu-close") {
-      setInputText(inputText);
-      handleSearch(inputText);
+      setInputText(inputText)
+      handleSearch(inputText)
     }
-  };
+  }
 
   const handleSearch = (searchQuery) => {
     if (searchQuery.trim().length === 0) {
-      setMunicipios([]);
-      return;
+      setMunicipios([])
+      return
     }
-    setIsLoading(true);
+    setIsLoading(true)
     axios
-      .get(`${process.env.REACT_APP_API_URL}/ciudad?nombre=${searchQuery}`)
+      .get(`${process.env.REACT_APP_API_URL}/ciudad?nombre=${searchQuery}`, {
+        headers: {
+          Authorization: `Bearer ${fetchToken()}`,
+        },
+      })
       .then((response) => {
-        setMunicipios(response.data.map((l) => ({ label: l, value: l })));
-        setIsLoading(false);
-      });
-  };
+        setMunicipios(response.data.map((l) => ({ label: l, value: l })))
+        setIsLoading(false)
+      })
+  }
 
   const noOptionsMessage = (obj) => {
     if (obj.inputValue.trim().length === 0) {
-      return null;
+      return null
     }
-    return "No existen municipios con ese nombre";
-  };
+    return "No existen municipios con ese nombre"
+  }
 
   return (
     <span style={{ marginLeft: "10px", display: "inline-block", width: "75%" }}>
@@ -56,20 +61,20 @@ const CitySearch = () => {
         required
       />
     </span>
-  );
-};
+  )
+}
 
-export default CitySearch;
+export default CitySearch
 
 const DropdownIndicator = (props) => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <SearchIcon />
+        {<SearchIcon />}
       </components.DropdownIndicator>
     )
-  );
-};
+  )
+}
 
 const customStyles = {
   control: (base) => ({
@@ -85,4 +90,4 @@ const customStyles = {
     ...base,
     paddingRight: "2.3rem",
   }),
-};
+}
