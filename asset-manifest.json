@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/sara-frontend/static/css/main.1725cfd3.css",
-    "main.js": "/sara-frontend/static/js/main.7ae4dbcc.js",
+    "main.js": "/sara-frontend/static/js/main.d8cae1b0.js",
     "static/media/cubierta2aguas.png": "/sara-frontend/static/media/cubierta2aguas.c08d4462c82ecef4739f.png",
     "static/media/paramverticales.png": "/sara-frontend/static/media/paramverticales.350e8f831fe98a2ebdd0.png",
     "static/media/engineer.png": "/sara-frontend/static/media/engineer.572a3f7e48c28f8d5403.png",
     "index.html": "/sara-frontend/index.html",
     "main.1725cfd3.css.map": "/sara-frontend/static/css/main.1725cfd3.css.map",
-    "main.7ae4dbcc.js.map": "/sara-frontend/static/js/main.7ae4dbcc.js.map"
+    "main.d8cae1b0.js.map": "/sara-frontend/static/js/main.d8cae1b0.js.map"
   },
   "entrypoints": [
     "static/css/main.1725cfd3.css",
-    "static/js/main.7ae4dbcc.js"
+    "static/js/main.d8cae1b0.js"
   ]
 }
